@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const path = require("path");
+const apiRouter = require("./server/api");
 
 module.exports = app;
 
@@ -14,8 +16,12 @@ const PORT = process.env.PORT || 4001;
 app.use(cors());
 // Add middware for parsing request bodies here:
 app.use(bodyParser.json());
+
+// Add middleware for logging
+const morgan = require("morgan");
+app.use(morgan("dev"));
+
 // Mount your existing apiRouter below at the '/api' path.
-const apiRouter = require("./server/api");
 app.use("/api", apiRouter);
 
 // This conditional is here for testing purposes:
