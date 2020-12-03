@@ -1,6 +1,7 @@
 const express = require("express");
 const app = require("../server");
 const ideasRouter = express.Router();
+const checkMillionDollarIdea = require("./checkMillionDollarIdea");
 
 const {
   createMeeting,
@@ -19,7 +20,7 @@ ideasRouter.get("/", (req, res) => {
 });
 
 //Create new idea
-ideasRouter.post("/", (req, res) => {
+ideasRouter.post("/", checkMillionDollarIdea, (req, res) => {
   const newIdea = addToDatabase("ideas", req.body);
   res.status(201).send(newIdea);
 });

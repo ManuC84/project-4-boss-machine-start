@@ -18,4 +18,16 @@ meetingsRouter.get("/", (req, res) => {
   res.send(allMeetings);
 });
 
+//Create new meeting
+meetingsRouter.post("/", (req, res) => {
+  const newMeeting = addToDatabase("meetings", createMeeting());
+  res.status(201).send(newMeeting);
+});
+
+//Delete all meetings
+meetingsRouter.delete("/", (req, res) => {
+  deleteAllFromDatabase("meetings");
+  res.sendStatus(204);
+});
+
 module.exports = meetingsRouter;
