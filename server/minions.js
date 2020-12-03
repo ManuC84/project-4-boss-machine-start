@@ -35,4 +35,28 @@ minionsRouter.get("/:minionId", (req, res) => {
   }
 });
 
+//Update minion by ID
+minionsRouter.put("/:minionId", (req, res) => {
+  const minionId = req.params.minionId;
+  const minionInstance = req.body;
+  const updateMinionById = updateInstanceInDatabase("minions", minionInstance);
+  if (typeof Number(minionId) !== "number" || !updateMinionById) {
+    res.sendStatus(404);
+  } else {
+    res.send(updateMinionById);
+  }
+});
+
+//Delete Minion by ID
+minionsRouter.delete("/:minionId", (req, res) => {
+  const minionId = req.params.minionId;
+  const deleteMinion = deleteFromDatabasebyId("minions", minionId);
+  if (typeof Number(minionId) !== "number" || !deleteMinion) {
+    res.sendStatus(404);
+  } else {
+    deleteFromDatabasebyId("minions", minionId);
+    res.sendStatus(204);
+  }
+});
+
 module.exports = minionsRouter;
