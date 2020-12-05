@@ -54,7 +54,6 @@ minionsRouter.delete("/:minionId", (req, res) => {
   if (typeof Number(minionId) !== "number" || !deleteMinion) {
     res.sendStatus(404);
   } else {
-    deleteMinion;
     res.sendStatus(204);
   }
 });

@@ -55,7 +55,6 @@ ideasRouter.delete("/:ideasId", (req, res) => {
   if (typeof Number(ideasId) !== "number" || !deleteIdea) {
     res.sendStatus(404);
   } else {
-    deleteIdea;
     res.sendStatus(204);
   }
 });
